@@ -1,4 +1,3 @@
-import prisma from "@/db";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { authOptions } from "./api/auth/[...nextauth]/route";
@@ -6,9 +5,6 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const users = await prisma.user.findMany();
-  console.log("users", users);
-
   const session = await getServerSession(authOptions);
   console.log("session", session);
 
