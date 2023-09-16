@@ -35,6 +35,11 @@ ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+# prisma migrateに必要
+COPY --from=builder /app/prisma ./prisma
+RUN yarn add prisma
+RUN yarn prisma migrate deploy
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
