@@ -38,7 +38,6 @@ ENV NODE_ENV production
 # prisma migrateに必要
 COPY --from=builder /app/prisma ./prisma
 RUN yarn add prisma
-RUN yarn prisma migrate deploy
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
