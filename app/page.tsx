@@ -1,17 +1,17 @@
-// import prisma from "@/db";
+import prisma from "@/db";
 import Image from "next/image";
 
 export default async function Home() {
-  // await prisma.user.create({
-  //   data: {
-  //     registeredAt: new Date(),
-  //   },
-  // });
+  await prisma.user.create({
+    data: {
+      registeredAt: new Date(),
+    },
+  });
 
-  // const users = await prisma.user.findMany();
-  // console.log("users", users);
+  const users = await prisma.user.findMany();
+  console.log("users", users);
 
-  // await prisma.user.deleteMany();
+  await prisma.user.deleteMany();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
