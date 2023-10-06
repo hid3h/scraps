@@ -184,7 +184,7 @@ export default function StackedList() {
           className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap"
         >
           <div>
-            <p className="text-sm font-semibold leading-6 text-gray-900">
+            <p className="font-semibold leading-6 text-gray-900">
               <Link href={"/scraps/" + scrap.id} className="hover:underline">
                 {scrap.title}
               </Link>
