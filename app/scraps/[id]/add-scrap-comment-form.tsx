@@ -1,6 +1,8 @@
 "use client";
 
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
+//@ts-expect-error
+// https://github.com/vercel/next.js/issues/56041
 import { experimental_useFormState as useFormState } from "react-dom";
 import { postScrapCommentAction } from "@/app/scraps/[id]/actions";
 import ErrorAlert from "@/app/_components/ErrorAlert";
