@@ -31,8 +31,7 @@ export const AddScrapCommentForm = () => {
     initialState
   );
 
-  console.log("state", state)
-  const errorMessages = state.message ? [state.message] : [];
+  const errorMessages = state?.message ? [state.message] : [];
 
   return (
     <form action={formAction}>
