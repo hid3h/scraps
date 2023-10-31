@@ -50,6 +50,9 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  scrapPostings ScrapPosting[]
+  scrapCommentings ScrapCommenting[]
+
   createdAt DateTime @default(now()) @map("created_at")
 }
 
@@ -61,4 +64,33 @@ model VerificationToken {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([identifier, token])
+}
+
+model ScrapPosting {
+  id String @id @default(cuid())
+  title String
+  postedAt DateTime @map("posted_at")
+
+  user User @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+  scrapCommentings ScrapCommenting[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("scrap_postings")
+}
+
+model ScrapCommenting {
+  id String @id @default(cuid())
+  body String
+  commentedAt DateTime @map("commented_at")
+
+  user User @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+  scrapPosting ScrapPosting @relation(fields: [scrapPostingId], references: [id])
+  scrapPostingId String @map("scrap_posting_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("scrap_commentings")
 }
