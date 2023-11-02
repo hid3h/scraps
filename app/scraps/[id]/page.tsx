@@ -1,7 +1,9 @@
 import { findScrap } from "@/app/lib/data";
 import ScrapHeading from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
-import linkifyHtml from "linkify-html";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 export default async function Scrap({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
@@ -9,17 +11,8 @@ export default async function Scrap({ params }: { params: { id: string } }) {
   });
 
   const displayComment = (comment: string) => {
-    const html = linkifyHtml(comment, {
-      className: "text-indigo-600 hover:underline",
-      target: "_blank",
-    });
-
-    return (
-      <div
-        className="prose prose-sm max-w-none"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    );
+    console.log("comment", comment);
+    return comment;
   };
 
   return (
@@ -32,7 +25,9 @@ export default async function Scrap({ params }: { params: { id: string } }) {
               key={scrapComment.id}
               className="overflow-hidden bg-white py-4 shadow rounded-md px-6"
             >
-              {displayComment(scrapComment.body)}
+              <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                {displayComment(scrapComment.body)}
+              </Markdown>
             </li>
           ))}
         </ul>

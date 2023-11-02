@@ -40,9 +40,7 @@ export const AddScrapCommentForm = ({ scrap }: { scrap: ScrapPosting }) => {
         <textarea
           rows={4}
           name="body"
-          id="comment"
-          className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-          defaultValue={""}
+          className="px-6 block w-full rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
           required
         />
       </div>
