@@ -4,6 +4,7 @@
 
 import { fetchCurrentUser } from "@/auth";
 import prisma from "@/db";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -28,4 +29,32 @@ export async function postScrap(formData: FormData) {
     },
   });
   redirect(`/scraps/${scrapPosting.id}`);
+}
+
+const ScrapCommentSchema = z.object({
+  body: z.string().min(1),
+});
+
+export async function addScrapComment(scrapId: string, formData: FormData) {
+  const currentUser = await fetchCurrentUser();
+  const { body } = ScrapCommentSchema.parse({
+    body: formData.get("body"),
+  });
+  await prisma.scrapCommenting.create({
+    data: {
+      body,
+      commentedAt: new Date(),
+      user: {
+        connect: {
+          id: currentUser.id,
+        },
+      },
+      scrapPosting: {
+        connect: {
+          id: scrapId,
+        },
+      },
+    },
+  });
+  revalidatePath(`/`);
 }

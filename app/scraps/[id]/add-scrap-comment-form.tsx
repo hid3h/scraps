@@ -3,14 +3,9 @@
 //@ts-expect-error
 // https://github.com/vercel/next.js/issues/56041
 import { useFormStatus } from "react-dom";
-//@ts-expect-error
-import { useFormState } from "react-dom";
-import { postScrapCommentAction } from "@/app/scraps/[id]/actions";
-import ErrorAlert from "@/app/_components/ErrorAlert";
-
-const initialState = {
-  message: null,
-};
+import { addScrapComment } from "@/app/lib/actions";
+import { ScrapPosting } from "@prisma/client";
+import { useRef } from "react";
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -26,21 +21,21 @@ const SubmitButton = () => {
   );
 };
 
-export const AddScrapCommentForm = () => {
-  const [state, formAction] = useFormState(
-    postScrapCommentAction,
-    initialState
-  );
+export const AddScrapCommentForm = ({ scrap }: { scrap: ScrapPosting }) => {
+  const formAction = addScrapComment.bind(null, scrap.id);
 
-  const errorMessages = state?.message ? [state.message] : [];
+  // https://note.com/komzweb/n/n423d64754f39
+  // これでいいのか？
+  const ref = useRef<HTMLFormElement>(null);
 
   return (
-    <form action={formAction}>
-      {errorMessages.length > 0 && (
-        <div className="mt-4">
-          <ErrorAlert message={errorMessages} />
-        </div>
-      )}
+    <form
+      ref={ref}
+      action={async (formData) => {
+        await formAction(formData);
+        ref.current?.reset();
+      }}
+    >
       <div className="mt-4">
         <textarea
           rows={4}
@@ -48,6 +43,7 @@ export const AddScrapCommentForm = () => {
           id="comment"
           className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
           defaultValue={""}
+          required
         />
       </div>
       <div className="mt-2 flex justify-end">
