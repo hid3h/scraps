@@ -5,6 +5,15 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const scrap = await findScrap({
+    id: params.id,
+  });
+  return {
+    title: scrap.title,
+  };
+}
+
 export default async function Scrap({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
     id: params.id,

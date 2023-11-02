@@ -2,6 +2,7 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { SITE_TITLE } from "../constant";
 
 export default function Header(props: { authenticated: boolean }) {
   const { authenticated } = props;
@@ -13,7 +14,9 @@ export default function Header(props: { authenticated: boolean }) {
             <div className="flex h-14 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">Scrap Memo</Link>
+                  <Link href={authenticated ? "/dashboard" : "/"}>
+                    {SITE_TITLE}
+                  </Link>
                 </div>
               </div>
 
