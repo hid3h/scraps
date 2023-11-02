@@ -1,6 +1,7 @@
 // https://nextjs.org/learn/dashboard-app/fetching-data
 // ここでapp/lib/dataにつくっていたのでそうしている
 
+import { fetchCurrentUser } from "@/auth";
 import prisma from "@/db";
 
 export const findScrap = async ({ id }: { id: string }) => {
@@ -14,4 +15,27 @@ export const findScrap = async ({ id }: { id: string }) => {
     },
   });
   return scrapPosting;
+};
+
+export const fetchScrapSummary = async () => {
+  const currentUser = await fetchCurrentUser();
+  const scrapPostings = await prisma.scrapPosting.findMany({
+    where: {
+      userId: currentUser.id,
+    },
+    include: {
+      scrapCommentings: true,
+    },
+    orderBy: {
+      postedAt: "desc",
+    },
+  });
+  return scrapPostings.map((scrapPosting) => {
+    return {
+      id: scrapPosting.id,
+      title: scrapPosting.title,
+      postedAt: scrapPosting.postedAt.toISOString(),
+      commentCount: scrapPosting.scrapCommentings.length,
+    };
+  });
 };
