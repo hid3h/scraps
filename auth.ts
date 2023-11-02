@@ -32,3 +32,15 @@ export const {
     colorScheme: "light", // "auto" | "dark" | "light"
   },
 });
+
+export const fetchCurrentUser = async () => {
+  const session = await auth();
+  if (!session || !session.user) {
+    throw new Error("not authenticated.");
+  }
+  const user = await prisma.user.findFirstOrThrow({
+    where: { email: session.user?.email },
+  });
+
+  return user;
+};
