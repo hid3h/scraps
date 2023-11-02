@@ -1,5 +1,5 @@
 import prisma from "@/db";
-import { fetchCurrentUser } from "@/lib/next-auth";
+import { fetchCurrentUser } from "@/auth";
 import { z } from "zod";
 
 export const postScrapCommentSchema = z.object({
