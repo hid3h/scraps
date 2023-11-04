@@ -2,7 +2,7 @@
 // これでlib/actionsにつくっていたのでそうしている
 "use server";
 
-import { fetchCurrentUser, signOut } from "@/auth";
+import { fetchCurrentUser, signIn, signOut } from "@/auth";
 import prisma from "@/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -61,4 +61,8 @@ export async function addScrapComment(scrapId: string, formData: FormData) {
 
 export const logout = async () => {
   await signOut();
+};
+
+export const authenticate = async () => {
+  await signIn("google");
 };
