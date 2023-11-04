@@ -124,7 +124,7 @@ export default function Header(props: { authenticated: boolean }) {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full max-w-sm p-6">
-                  <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+                  <div className="absolute right-0 top-0 pr-4 pt-4 block">
                     <button
                       className="rounded-md bg-white text-gray-400 hover:text-gray-500"
                       onClick={() => setOpen(false)}
@@ -154,8 +154,11 @@ export default function Header(props: { authenticated: boolean }) {
 
 const GoogleSignInForm = () => {
   return (
-    <form action={authenticate}>
-      <button className="flex mt-5 items-center justify-center" type="submit">
+    <form
+      action={authenticate}
+      className="flex mt-5 items-center justify-center"
+    >
+      <button type="submit">
         <svg
           width="175"
           height="40"
