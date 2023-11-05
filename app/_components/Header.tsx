@@ -126,7 +126,7 @@ export default function Header(props: { authenticated: boolean }) {
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full max-w-sm p-6">
                   <div className="absolute right-0 top-0 pr-4 pt-4 block">
                     <button
-                      className="rounded-md bg-white text-gray-400 hover:text-gray-500"
+                      className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
                       onClick={() => setOpen(false)}
                     >
                       <span className="sr-only">Close</span>
