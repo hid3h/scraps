@@ -1,18 +1,21 @@
 "use client";
 
+import { deleteScrapComment } from "@/app/lib/actions";
 import { Menu, Transition } from "@headlessui/react";
-import {
-  ChevronDownIcon,
-  EllipsisVerticalIcon,
-  TrashIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDownIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CommentCardMenu() {
+export default function CommentCardMenu({
+  scrapCommentId,
+}: {
+  scrapCommentId: string;
+}) {
+  const formAction = deleteScrapComment.bind(null, scrapCommentId);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -37,19 +40,20 @@ export default function CommentCardMenu() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm"
-                  )}
-                >
-                  <TrashIcon
-                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                  Delete
-                </a>
+                <form action={formAction}>
+                  <button
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "group flex items-center px-4 py-2 text-sm w-full"
+                    )}
+                  >
+                    <TrashIcon
+                      className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    Delete
+                  </button>
+                </form>
               )}
             </Menu.Item>
           </div>

@@ -36,7 +36,7 @@ export default async function Scrap({ params }: { params: { id: string } }) {
               className="bg-white py-4 shadow rounded-md px-6"
             >
               <div className="flex justify-end">
-                <CommentCardMenu />
+                <CommentCardMenu scrapCommentId={scrapComment.id} />
               </div>
               <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>
                 {displayComment(scrapComment.body)}

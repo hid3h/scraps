@@ -59,6 +59,30 @@ export async function addScrapComment(scrapId: string, formData: FormData) {
   revalidatePath(`/`);
 }
 
+export async function deleteScrapComment(commentId: string) {
+  const currentUser = await fetchCurrentUser();
+  // 自分のコメント以外は削除できない
+  const scrapCommenting = await prisma.scrapCommenting.findUniqueOrThrow({
+    where: {
+      id: commentId,
+    },
+  });
+  if (scrapCommenting.userId !== currentUser.id) {
+    throw new Error("自分のコメント以外は削除できません");
+  }
+  await prisma.scrapCommentDeleting.create({
+    data: {
+      deletedAt: new Date(),
+      scrapCommenting: {
+        connect: {
+          id: commentId,
+        },
+      },
+    },
+  });
+  revalidatePath(`/`);
+}
+
 export const logout = async () => {
   await signOut();
 };

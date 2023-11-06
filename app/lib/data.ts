@@ -11,7 +11,13 @@ export const findScrap = async ({ id }: { id: string }) => {
     },
     include: {
       user: true,
-      scrapCommentings: true,
+      scrapCommentings: {
+        where: {
+          scrapCommentDeletings: {
+            none: {},
+          },
+        },
+      },
     },
   });
   return scrapPosting;
