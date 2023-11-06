@@ -33,9 +33,9 @@ export default async function Scrap({ params }: { params: { id: string } }) {
           {scrap.scrapCommentings.map((scrapComment) => (
             <div
               key={scrapComment.id}
-              className="overflow-hidden bg-white py-4 shadow rounded-md px-6"
+              className="bg-white py-4 shadow rounded-md px-6"
             >
-              <div className="flex flex-shrink-0 justify-start">
+              <div className="flex justify-end">
                 <CommentCardMenu />
               </div>
               <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>

@@ -20,10 +20,10 @@ export default function CommentCardMenu() {
 
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-100"
+        enter="transition ease-out"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
+        leave="transition ease-in"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
@@ -31,40 +31,14 @@ export default function CommentCardMenu() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "flex justify-between px-4 py-2 text-sm"
-                  )}
-                >
-                  <span>Edit</span>
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "flex justify-between px-4 py-2 text-sm"
-                  )}
-                >
-                  <span>Duplicate</span>
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
                 <button
                   type="button"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-red-50 text-red-500" : "text-red-500",
                     "flex w-full justify-between px-4 py-2 text-sm"
                   )}
                 >
-                  <span>Archive</span>
+                  <span>削除</span>
                 </button>
               )}
             </Menu.Item>
