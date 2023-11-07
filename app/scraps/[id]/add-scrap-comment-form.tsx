@@ -1,8 +1,5 @@
 "use client";
 
-//@ts-expect-error
-// https://github.com/vercel/next.js/issues/56041
-import { useFormStatus } from "react-dom";
 import { addScrapComment } from "@/app/lib/actions";
 import { ScrapPosting } from "@prisma/client";
 import { useRef, useState } from "react";
@@ -27,7 +24,6 @@ export const AddScrapCommentForm = ({ scrap }: { scrap: ScrapPosting }) => {
   const ref = useRef<HTMLFormElement>(null);
 
   const handleTabChange = (index: number) => {
-    console.log("displayPreview", index);
     if (index == 0) return;
     setCommentPreview(ref.current?.body.value);
   };
