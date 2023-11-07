@@ -4,6 +4,7 @@ import Header from "./_components/Header";
 import { auth } from "@/auth";
 import { SITE_TITLE } from "./constant";
 import { GA } from "./_components/GA";
+import { Adsense } from "./_components/Adsense";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -21,6 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <GA />
+      <Adsense />
       <body className="bg-gray-100">
         <Header authenticated={!!user} />
         <div className="mt-4">{children}</div>
