@@ -7,7 +7,7 @@ export default async function Dashboard() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex-1 max-w-screen-sm">
+      <div className="flex-1 max-w-screen-sm bg-white p-4">
         <CreateScrapForm />
         <StackedList scraps={scrapSummary} />
       </div>

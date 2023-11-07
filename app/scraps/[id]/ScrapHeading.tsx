@@ -10,7 +10,7 @@ function classNames(...classes: string[]) {
 export default function ScrapHeading(props: { scrap: { title: string } }) {
   const { scrap } = props;
   return (
-    <div className="border-b border-gray-200 pb-5">
+    <div className="border-b border-gray-200 pb-5 sm:mx-0 mx-4">
       <div className="sm:flex sm:items-baseline sm:justify-between">
         <div className="sm:w-0 sm:flex-1">
           <h1
