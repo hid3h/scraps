@@ -1,10 +1,8 @@
 import { findScrap } from "@/app/lib/data";
 import ScrapHeading from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkBreaks from "remark-breaks";
 import CommentCardMenu from "./CommentCardMenu";
+import { AppMarkdown } from "@/app/_components/AppMarkdown";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
@@ -33,9 +31,7 @@ export default async function Scrap({ params }: { params: { id: string } }) {
               <div className="flex justify-end">
                 <CommentCardMenu scrapCommentId={scrapComment.id} />
               </div>
-              <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-                {scrapComment.body}
-              </Markdown>
+              <AppMarkdown body={scrapComment.body} />
             </div>
           ))}
         </div>
