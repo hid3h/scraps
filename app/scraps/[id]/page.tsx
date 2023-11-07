@@ -20,11 +20,6 @@ export default async function Scrap({ params }: { params: { id: string } }) {
     id: params.id,
   });
 
-  const displayComment = (comment: string) => {
-    console.log("comment", comment);
-    return comment;
-  };
-
   return (
     <div className="flex justify-center">
       <div className="flex-1 max-w-screen-sm w-full">
@@ -39,7 +34,7 @@ export default async function Scrap({ params }: { params: { id: string } }) {
                 <CommentCardMenu scrapCommentId={scrapComment.id} />
               </div>
               <Markdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-                {displayComment(scrapComment.body)}
+                {scrapComment.body}
               </Markdown>
             </div>
           ))}
