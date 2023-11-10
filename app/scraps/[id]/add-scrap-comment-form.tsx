@@ -4,11 +4,7 @@ import { addScrapComment } from "@/app/lib/actions";
 import { ScrapPosting } from "@prisma/client";
 import { useRef, useState } from "react";
 import { Tab } from "@headlessui/react";
-import {
-  AtSymbolIcon,
-  CodeBracketIcon,
-  LinkIcon,
-} from "@heroicons/react/24/outline";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 import { AppMarkdown } from "@/app/_components/AppMarkdown";
 
 function classNames(...classes: string[]) {
@@ -27,6 +23,8 @@ export const AddScrapCommentForm = ({
   const ref = useRef<HTMLFormElement>(null);
   const [commentPreview, setCommentPreview] = useState("");
 
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+
   if (!enabled) return null;
 
   const formAction = addScrapComment.bind(null, scrap);
@@ -34,6 +32,47 @@ export const AddScrapCommentForm = ({
   const handleTabChange = (index: number) => {
     if (index == 0) return;
     setCommentPreview(ref.current?.body.value);
+  };
+
+  const handleFileUploadClick = () => {
+    hiddenFileInput.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const imageFile = e.target.files?.[0];
+    if (!imageFile) return;
+
+    const formData = new FormData();
+    formData.append("file", imageFile);
+
+    try {
+      const response = await fetch("/api/scrap-comment-images", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Upload failed");
+
+      const data = await response.json();
+      const imageUrl = data.imageUrl;
+
+      // Markdownに画像のURLを挿入
+      const sentence = ref.current!.body.value;
+      const len = sentence.length;
+      const pos = ref.current?.body.selectionStart;
+
+      const before = sentence.substr(0, pos);
+      const word = `![](${imageUrl})\n`;
+      const after = sentence.substr(pos, len);
+
+      ref.current!.body.value = before + word + after;
+    } catch (error) {
+      console.error("Upload error:", error);
+    } finally {
+      // ファイル選択をリセット
+      hiddenFileInput.current!.value = "";
+    }
   };
 
   return (
@@ -79,33 +118,21 @@ export const AddScrapCommentForm = ({
                   <div className="ml-auto flex items-center space-x-5">
                     <div className="flex items-center">
                       <button
+                        onClick={handleFileUploadClick}
                         type="button"
                         className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
                       >
-                        <span className="sr-only">Insert link</span>
-                        <LinkIcon className="h-5 w-5" aria-hidden="true" />
+                        <span className="sr-only">Insert photo</span>
+                        <PhotoIcon className="h-5 w-5" aria-hidden="true" />
                       </button>
-                    </div>
-                    <div className="flex items-center">
-                      <button
-                        type="button"
-                        className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
-                      >
-                        <span className="sr-only">Insert code</span>
-                        <CodeBracketIcon
-                          className="h-5 w-5"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                    <div className="flex items-center">
-                      <button
-                        type="button"
-                        className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
-                      >
-                        <span className="sr-only">Mention someone</span>
-                        <AtSymbolIcon className="h-5 w-5" aria-hidden="true" />
-                      </button>
+                      <input
+                        name="image"
+                        ref={hiddenFileInput}
+                        type="file"
+                        className="hidden"
+                        onChange={handleFileChange}
+                        accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+                      />
                     </div>
                   </div>
                 ) : null}
