@@ -1,10 +1,10 @@
 import { ScrapSummary } from "@/app/_components/ScrapSummary";
 import { fetchScrapSummary } from "../lib/data";
-import { fetchCurrentUser } from "@/auth";
+import { findCurrentUser } from "@/auth";
 import { Profile } from "../_components/Profile";
 
 export default async function Mypage({}: {}) {
-  const currentUser = await fetchCurrentUser();
+  const currentUser = await findCurrentUser();
   const scrapSummary = await fetchScrapSummary();
 
   return (

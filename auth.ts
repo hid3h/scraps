@@ -77,12 +77,20 @@ export const {
   },
 });
 
+export const findCurrentUser = async () => {
+  const user = await fetchCurrentUser();
+  if (!user) {
+    throw new Error("not authenticated.");
+  }
+  return user;
+};
+
 export const fetchCurrentUser = async () => {
   const session = await auth();
   if (!session || !session.user) {
-    throw new Error("not authenticated.");
+    return null;
   }
-  const user = await prisma.user.findFirstOrThrow({
+  const user = await prisma.user.findFirst({
     where: { email: session.user?.email },
     include: {
       systemInitialUserScreenNaming: true,

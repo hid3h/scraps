@@ -2,8 +2,9 @@
 // これでlib/actionsにつくっていたのでそうしている
 "use server";
 
-import { fetchCurrentUser, signIn, signOut } from "@/auth";
+import { findCurrentUser, signIn, signOut } from "@/auth";
 import prisma from "@/db";
+import { ScrapPosting } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -13,7 +14,7 @@ const ScrapSchema = z.object({
 });
 
 export async function postScrap(formData: FormData) {
-  const currentUser = await fetchCurrentUser();
+  const currentUser = await findCurrentUser();
   const { title } = ScrapSchema.parse({
     title: formData.get("title"),
   });
@@ -35,8 +36,14 @@ const ScrapCommentSchema = z.object({
   body: z.string().min(1),
 });
 
-export async function addScrapComment(scrapId: string, formData: FormData) {
-  const currentUser = await fetchCurrentUser();
+export async function addScrapComment(scrap: ScrapPosting, formData: FormData) {
+  const currentUser = await findCurrentUser();
+
+  // 自分のスクラップにだけコメント可能
+  if (scrap.userId !== currentUser.id) {
+    throw new Error("自分のスクラップにだけコメント可能です");
+  }
+
   const { body } = ScrapCommentSchema.parse({
     body: formData.get("body"),
   });
@@ -51,7 +58,7 @@ export async function addScrapComment(scrapId: string, formData: FormData) {
       },
       scrapPosting: {
         connect: {
-          id: scrapId,
+          id: scrap.id,
         },
       },
     },
@@ -60,7 +67,7 @@ export async function addScrapComment(scrapId: string, formData: FormData) {
 }
 
 export async function deleteScrapComment(commentId: string) {
-  const currentUser = await fetchCurrentUser();
+  const currentUser = await findCurrentUser();
   // 自分のコメント以外は削除できない
   const scrapCommenting = await prisma.scrapCommenting.findUniqueOrThrow({
     where: {

@@ -15,13 +15,21 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export const AddScrapCommentForm = ({ scrap }: { scrap: ScrapPosting }) => {
-  const [commentPreview, setCommentPreview] = useState("");
-  const formAction = addScrapComment.bind(null, scrap.id);
-
+export const AddScrapCommentForm = ({
+  scrap,
+  enabled,
+}: {
+  scrap: ScrapPosting;
+  enabled: boolean;
+}) => {
   // https://note.com/komzweb/n/n423d64754f39
   // これでいいのか？
   const ref = useRef<HTMLFormElement>(null);
+  const [commentPreview, setCommentPreview] = useState("");
+
+  if (!enabled) return null;
+
+  const formAction = addScrapComment.bind(null, scrap);
 
   const handleTabChange = (index: number) => {
     if (index == 0) return;

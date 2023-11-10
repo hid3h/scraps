@@ -3,6 +3,7 @@ import ScrapHeading from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
 import CommentCardMenu from "./CommentCardMenu";
 import { AppMarkdown } from "@/app/_components/AppMarkdown";
+import { fetchCurrentUser } from "@/auth";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
@@ -17,6 +18,9 @@ export default async function Scrap({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
     id: params.id,
   });
+
+  const currentUser = await fetchCurrentUser();
+  const enabledScrapCommentForm = scrap.userId === currentUser?.id;
 
   return (
     <div className="flex justify-center">
@@ -35,7 +39,7 @@ export default async function Scrap({ params }: { params: { id: string } }) {
             </div>
           ))}
         </div>
-        <AddScrapCommentForm scrap={scrap} />
+        <AddScrapCommentForm scrap={scrap} enabled={enabledScrapCommentForm} />
       </div>
     </div>
   );

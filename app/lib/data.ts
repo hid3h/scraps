@@ -1,7 +1,7 @@
 // https://nextjs.org/learn/dashboard-app/fetching-data
 // ここでapp/lib/dataにつくっていたのでそうしている
 
-import { fetchCurrentUser } from "@/auth";
+import { findCurrentUser } from "@/auth";
 import prisma from "@/db";
 import { User } from "@prisma/client";
 
@@ -25,7 +25,7 @@ export const findScrap = async ({ id }: { id: string }) => {
 };
 
 export const fetchScrapSummary = async () => {
-  const currentUser = await fetchCurrentUser();
+  const currentUser = await findCurrentUser();
   return commonScrapSummary({ userId: currentUser.id });
 };
 
