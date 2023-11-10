@@ -84,6 +84,9 @@ export const fetchCurrentUser = async () => {
   }
   const user = await prisma.user.findFirstOrThrow({
     where: { email: session.user?.email },
+    include: {
+      systemInitialUserScreenNaming: true,
+    },
   });
 
   return user;
