@@ -7,8 +7,11 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ScrapHeading(props: { scrap: { title: string } }) {
-  const { scrap } = props;
+export const ScrapHeading = ({
+  scrap,
+}: {
+  scrap: { title: string; postedAtStr: string };
+}) => {
   return (
     <div className="border-b border-gray-200 pb-5 sm:mx-0 mx-4">
       <div className="sm:flex sm:items-baseline sm:justify-between">
@@ -20,7 +23,7 @@ export default function ScrapHeading(props: { scrap: { title: string } }) {
             {scrap.title}
           </h1>
           <p className="mt-1 truncate text-sm text-gray-500">
-            TODO: lastCommentedAt
+            作成日時: {scrap.postedAtStr}
           </p>
         </div>
 
@@ -100,4 +103,4 @@ export default function ScrapHeading(props: { scrap: { title: string } }) {
       </div>
     </div>
   );
-}
+};

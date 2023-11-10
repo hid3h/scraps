@@ -4,6 +4,13 @@
 import { findCurrentUser } from "@/auth";
 import prisma from "@/db";
 import { User } from "@prisma/client";
+import { Temporal } from "@js-temporal/polyfill";
+
+const toZnedDateTime = (date: Date) => {
+  return Temporal.Instant.from(date.toISOString()).toZonedDateTimeISO(
+    "Asia/Tokyo"
+  );
+};
 
 export const findScrap = async ({ id }: { id: string }) => {
   const scrapPosting = await prisma.scrapPosting.findUniqueOrThrow({
@@ -21,7 +28,14 @@ export const findScrap = async ({ id }: { id: string }) => {
       },
     },
   });
-  return scrapPosting;
+
+  const postedAt = toZnedDateTime(scrapPosting.postedAt);
+  return {
+    ...scrapPosting,
+    postedAtStr: `${postedAt.toPlainDate()} ${postedAt.hour}:${
+      postedAt.minute
+    }`,
+  };
 };
 
 export const fetchScrapSummary = async () => {
@@ -45,11 +59,13 @@ const commonScrapSummary = async ({ userId }: { userId: string }) => {
       postedAt: "desc",
     },
   });
+
   return scrapPostings.map((scrapPosting) => {
+    const postedAt = toZnedDateTime(scrapPosting.postedAt);
     return {
       id: scrapPosting.id,
       title: scrapPosting.title,
-      postedAt: scrapPosting.postedAt.toISOString(),
+      postedAt: `${postedAt.toPlainDate()} ${postedAt.hour}:${postedAt.minute}`,
       commentCount: scrapPosting.scrapCommentings.length,
     };
   });

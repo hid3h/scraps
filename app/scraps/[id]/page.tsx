@@ -1,5 +1,5 @@
 import { findScrap } from "@/app/lib/data";
-import ScrapHeading from "./ScrapHeading";
+import { ScrapHeading } from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
 import CommentCardMenu from "./CommentCardMenu";
 import { AppMarkdown } from "@/app/_components/AppMarkdown";
