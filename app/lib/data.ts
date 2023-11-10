@@ -16,6 +16,9 @@ export const findScrap = async ({ id }: { id: string }) => {
   const scrapPosting = await prisma.scrapPosting.findUniqueOrThrow({
     where: {
       id,
+      scrapDeletings: {
+        none: {},
+      },
     },
     include: {
       user: true,
@@ -51,6 +54,9 @@ const commonScrapSummary = async ({ userId }: { userId: string }) => {
   const scrapPostings = await prisma.scrapPosting.findMany({
     where: {
       userId,
+      scrapDeletings: {
+        none: {},
+      },
     },
     include: {
       scrapCommentings: true,

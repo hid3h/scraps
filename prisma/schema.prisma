@@ -75,10 +75,23 @@ model ScrapPosting {
   user User @relation(fields: [userId], references: [id])
   userId String @map("user_id")
   scrapCommentings ScrapCommenting[]
+  scrapDeletings ScrapDeleting[]
 
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("scrap_postings")
+}
+
+model ScrapDeleting {
+  id String @id @default(cuid())
+  deletedAt DateTime @map("deleted_at")
+
+  scrapPosting ScrapPosting @relation(fields: [scrapPostingId], references: [id])
+  scrapPostingId String @map("scrap_posting_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("scrap_deletings")
 }
 
 model ScrapCommenting {

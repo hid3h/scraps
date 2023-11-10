@@ -32,6 +32,29 @@ export async function postScrap(formData: FormData) {
   redirect(`/scraps/${scrapPosting.id}`);
 }
 
+export const deleteScrap = async (scrapId: string) => {
+  const currentUser = await findCurrentUser();
+  // 自分のスクラップ以外は削除できない
+  const scrapPosting = await prisma.scrapPosting.findUniqueOrThrow({
+    where: {
+      id: scrapId,
+    },
+  });
+  if (scrapPosting.userId !== currentUser.id) {
+    throw new Error("自分のスクラップ以外は削除できません");
+  }
+  await prisma.scrapDeleting.create({
+    data: {
+      deletedAt: new Date(),
+      scrapPosting: {
+        connect: {
+          id: scrapId,
+        },
+      },
+    },
+  });
+};
+
 const ScrapCommentSchema = z.object({
   body: z.string().min(1),
 });
