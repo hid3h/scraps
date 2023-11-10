@@ -1,7 +1,7 @@
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-export default function StackedList({
+export const ScrapSummary = ({
   scraps,
 }: {
   scraps: {
@@ -10,7 +10,7 @@ export default function StackedList({
     postedAt: string;
     commentCount: number;
   }[];
-}) {
+}) => {
   return (
     <ul role="list" className="divide-y divide-gray-100">
       {scraps.map((scrap) => (
@@ -43,4 +43,4 @@ export default function StackedList({
       ))}
     </ul>
   );
-}
+};

@@ -3,6 +3,7 @@
 
 import { fetchCurrentUser } from "@/auth";
 import prisma from "@/db";
+import { User } from "@prisma/client";
 
 export const findScrap = async ({ id }: { id: string }) => {
   const scrapPosting = await prisma.scrapPosting.findUniqueOrThrow({
@@ -25,9 +26,17 @@ export const findScrap = async ({ id }: { id: string }) => {
 
 export const fetchScrapSummary = async () => {
   const currentUser = await fetchCurrentUser();
+  return commonScrapSummary({ userId: currentUser.id });
+};
+
+export const fetchUserScrapSummary = async ({ user }: { user: User }) => {
+  return commonScrapSummary({ userId: user.id });
+};
+
+const commonScrapSummary = async ({ userId }: { userId: string }) => {
   const scrapPostings = await prisma.scrapPosting.findMany({
     where: {
-      userId: currentUser.id,
+      userId,
     },
     include: {
       scrapCommentings: true,
@@ -44,4 +53,17 @@ export const fetchScrapSummary = async () => {
       commentCount: scrapPosting.scrapCommentings.length,
     };
   });
+};
+
+export const fetchUser = async ({ screenName }: { screenName: string }) => {
+  const systemInitialUserScreenNaming =
+    await prisma.systemInitialUserScreenNaming.findUniqueOrThrow({
+      where: {
+        screenName,
+      },
+      include: {
+        user: true,
+      },
+    });
+  return systemInitialUserScreenNaming.user;
 };

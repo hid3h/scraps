@@ -52,6 +52,7 @@ model User {
 
   scrapPostings ScrapPosting[]
   scrapCommentings ScrapCommenting[]
+  systemInitialUserScreenNaming SystemInitialUserScreenNaming?
 
   createdAt DateTime @default(now()) @map("created_at")
 }
@@ -106,4 +107,16 @@ model ScrapCommentDeleting {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("scrap_comment_deletings")
+}
+
+model SystemInitialUserScreenNaming {
+  id String @id @default(cuid())
+  screenName String @unique @map("screen_name")
+
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("system_initial_user_screen_namings")
 }
