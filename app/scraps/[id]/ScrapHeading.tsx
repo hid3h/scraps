@@ -17,8 +17,8 @@ export const ScrapHeading = ({
   const formAction = deleteScrap.bind(null, scrap.id);
 
   return (
-    <div className="border-b border-gray-200 pb-5 sm:mx-0 mx-4">
-      <div className="sm:flex sm:items-baseline sm:justify-between">
+    <div className="border-b border-gray-200 pb-5 mx-4">
+      <div className="flex items-baseline justify-between">
         <div className="sm:w-0 sm:flex-1">
           <h1
             id="message-heading"
@@ -31,7 +31,7 @@ export const ScrapHeading = ({
           </p>
         </div>
 
-        <div className="mt-4 flex items-center justify-between sm:ml-6 sm:mt-0 sm:flex-shrink-0 sm:justify-start">
+        <div className="mt-4 flex items-center justify-between">
           <Menu as="div" className="relative ml-3 inline-block text-left">
             <div>
               <Menu.Button className="-my-2 flex items-center rounded-full bg-white p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
