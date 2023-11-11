@@ -115,7 +115,7 @@ export const AddScrapCommentForm = ({
 
                 {/* These buttons are here simply as examples and don't actually do anything. */}
                 {selectedIndex === 0 ? (
-                  <div className="ml-auto flex items-center space-x-5">
+                  <div className="ml-auto flex items-center space-x-5 hidden">
                     <div className="flex items-center">
                       <button
                         onClick={handleFileUploadClick}
