@@ -8,7 +8,6 @@ export const authConfig = {
   providers: [],
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      return true;
       const isPublicPaths = publicPaths.some(
         (path) => nextUrl.pathname === path
       );
