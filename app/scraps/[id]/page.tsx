@@ -20,12 +20,14 @@ export default async function Scrap({ params }: { params: { id: string } }) {
   });
 
   const currentUser = await fetchCurrentUser();
-  const enabledScrapCommentForm = scrap.userId === currentUser?.id;
+  const isScrapOwner = scrap.userId === currentUser?.id;
+  const enabledScrapCommentForm = isScrapOwner;
+  const isDisplayScrapMenu = isScrapOwner;
 
   return (
     <div className="flex justify-center">
       <div className="flex-1 max-w-screen-sm w-full">
-        <ScrapHeading scrap={scrap} />
+        <ScrapHeading scrap={scrap} isDisplayScrapMenu={isDisplayScrapMenu} />
         <div role="list" className="space-y-3">
           {scrap.scrapCommentings.map((scrapComment) => (
             <div
