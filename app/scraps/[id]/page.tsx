@@ -34,8 +34,13 @@ export default async function Scrap({ params }: { params: { id: string } }) {
               key={scrapComment.id}
               className="bg-white py-4 shadow rounded-md px-6 break-words"
             >
-              <div className="flex justify-end">
-                <CommentCardMenu scrapCommentId={scrapComment.id} />
+              <div className="flex justify-between items-center">
+                <div className="text-sm text-gray-500">
+                  {scrapComment.commentedAtStr}
+                </div>
+                <div>
+                  <CommentCardMenu scrapCommentId={scrapComment.id} />
+                </div>
               </div>
               <AppMarkdown body={scrapComment.body} />
             </div>

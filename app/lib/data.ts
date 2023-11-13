@@ -33,11 +33,24 @@ export const findScrap = async ({ id }: { id: string }) => {
   });
 
   const postedAt = toZnedDateTime(scrapPosting.postedAt);
+  
+  const scrapCommentings = scrapPosting.scrapCommentings.map(
+    (scrapCommenting) => {
+      const commentedAt = toZnedDateTime(scrapCommenting.commentedAt);
+      return {
+        ...scrapCommenting,
+        commentedAtStr: `${commentedAt.toPlainDate()} ${commentedAt.hour}:${
+          commentedAt.minute
+        }`,
+      };
+    }
+  );
   return {
     ...scrapPosting,
     postedAtStr: `${postedAt.toPlainDate()} ${postedAt.hour}:${
       postedAt.minute
     }`,
+    scrapCommentings,
   };
 };
 
