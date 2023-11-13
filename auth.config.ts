@@ -2,15 +2,19 @@
 // NextAuthConfigはnext-autnoのbeata(5系からある)
 import type { NextAuthConfig } from "next-auth";
 
-const publicPaths = ["/"];
+const publicPaths = ["/", "/scraps/*"];
 
 export const authConfig = {
   providers: [],
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      const isPublicPaths = publicPaths.some(
-        (path) => nextUrl.pathname === path
-      );
+      const isPublicPaths = publicPaths.some((path) => {
+        const isEndWithAsterisk = path.endsWith("*");
+        if (isEndWithAsterisk) {
+          return nextUrl.pathname.startsWith(path.slice(0, -1));
+        }
+        return nextUrl.pathname === path;
+      });
       if (isPublicPaths) {
         return true;
       }
