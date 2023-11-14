@@ -27,8 +27,8 @@ export const ScrapHeading = ({
 
   return (
     <div className="border-b border-gray-200 pb-5 mx-4">
-      <div className="flex items-baseline justify-between">
-        <div className="sm:w-0 sm:flex-1">
+      <div className="flex">
+        <div className="flex-1">
           <h1
             id="message-heading"
             className="text-base font-semibold leading-6 text-gray-900"
@@ -40,11 +40,11 @@ export const ScrapHeading = ({
           </p>
         </div>
 
-        {isDisplayScrapMenu && (
-          <div className="mt-4 flex items-center justify-between">
+        {!isDisplayScrapMenu && (
+          <div>
             <Menu as="div" className="relative ml-3 inline-block text-left">
               <div>
-                <Menu.Button className="-my-2 flex items-center rounded-full bg-white p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <Menu.Button className="flex items-center rounded-full bg-white p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                   <span className="sr-only">Open options</span>
                   <EllipsisVerticalIcon
                     className="h-5 w-5"
