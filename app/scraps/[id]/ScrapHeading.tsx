@@ -40,7 +40,7 @@ export const ScrapHeading = ({
           </p>
         </div>
 
-        {isDisplayScrapMenu ? (
+        {isDisplayScrapMenu && (
           <div className="mt-4 flex items-center justify-between">
             <Menu as="div" className="relative ml-3 inline-block text-left">
               <div>
@@ -89,7 +89,7 @@ export const ScrapHeading = ({
               </Transition>
             </Menu>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
