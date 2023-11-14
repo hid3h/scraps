@@ -2,7 +2,7 @@
 // NextAuthConfigはnext-autnoのbeata(5系からある)
 import type { NextAuthConfig } from "next-auth";
 
-const publicPaths = ["/", "/scraps/*"];
+const publicPaths = ["/", "/scraps/*", "/terms", "/privacy"];
 
 export const authConfig = {
   providers: [],
