@@ -24,10 +24,10 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              アイデアをすぐに形に。誰でも、どこでも、気軽に発信。
+              日常のメモから、誰かのヒントへ。
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              長い記事を書くことなく、瞬時に思いつきを共有。私たちの公開メモサービスは、あなたのアイデアや情報を素早く整理し、世界と共有するための最適な場所です。
+              日々のメモ、情報整理、日記。個人的な思いつきや記録が、意外な形で誰かの役に立つかもしれません。私たちの公開メモサービスは、長い記事を書くことなく、あなたのアイデアや情報を素早く整理し、共有する空間を提供します。
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
