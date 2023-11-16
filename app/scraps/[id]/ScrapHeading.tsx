@@ -40,7 +40,7 @@ export const ScrapHeading = ({
           </p>
         </div>
 
-        {!isDisplayScrapMenu && (
+        {isDisplayScrapMenu && (
           <div>
             <Menu as="div" className="relative ml-3 inline-block text-left">
               <div>
