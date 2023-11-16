@@ -7,10 +7,10 @@ import { GA } from "./_components/GA";
 import { Adsense } from "./_components/Adsense";
 
 const title = `${SITE_TITLE} | 公開メモサービス`;
-const description = `${SITE_TITLE}は長い記事を書くことなく、瞬時に思いつきを共有。私たちの公開メモサービスは、あなたのアイデアや情報を素早く整理し、世界と共有するための最適な場所です。`;
+export const SITE_DESCRIPTION = `日々のメモ、情報整理、日記。個人的な思いつきや記録が、意外な形で誰かの役に立つかもしれません。私たちの公開メモサービスは、長い記事を書くことなく、あなたのアイデアや情報を素早く整理し、共有する空間を提供します。`;
 export const metadata: Metadata = {
   title,
-  description,
+  description: SITE_DESCRIPTION,
 };
 
 export default async function RootLayout({
