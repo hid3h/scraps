@@ -3,7 +3,7 @@ import { SITE_TITLE } from "../constant";
 export default async function Terms() {
   return (
     <div className="flex justify-center">
-      <div className="max-w-screen-sm px-4">
+      <div className="max-w-screen-sm p-6">
         <h1 className="text-xl font-bold tracking-tight text-gray-900">
           利用規約
         </h1>

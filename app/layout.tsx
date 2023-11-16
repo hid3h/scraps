@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import { SITE_TITLE } from "./constant";
 import { GA } from "./_components/GA";
 import { Adsense } from "./_components/Adsense";
+import { Footer } from "./_components/Footer";
 
 const title = `${SITE_TITLE} | 公開メモサービス`;
 export const SITE_DESCRIPTION = `日々のメモ、情報整理、日記。個人的な思いつきや記録が、意外な形で誰かの役に立つかもしれません。私たちの公開メモサービスは、長い記事を書くことなく、あなたのアイデアや情報を素早く整理し、共有する空間を提供します。`;
@@ -28,6 +29,7 @@ export default async function RootLayout({
       <body className="bg-gray-100">
         <Header authenticated={!!user} />
         <div className="mt-4">{children}</div>
+        <Footer />
       </body>
     </html>
   );
