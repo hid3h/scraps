@@ -23,6 +23,7 @@ export default async function Scrap({ params }: { params: { id: string } }) {
   const isScrapOwner = scrap.userId === currentUser?.id;
   const enabledScrapCommentForm = isScrapOwner;
   const isDisplayScrapMenu = isScrapOwner;
+  const isDisplayCommentMenu = isScrapOwner;
 
   return (
     <div className="flex justify-center">
@@ -38,11 +39,13 @@ export default async function Scrap({ params }: { params: { id: string } }) {
                 <div className="text-sm text-gray-500">
                   {scrapComment.commentedAtStr}
                 </div>
-                <div>
+                {isDisplayCommentMenu && (
                   <CommentCardMenu scrapCommentId={scrapComment.id} />
-                </div>
+                )}
               </div>
-              <AppMarkdown body={scrapComment.body} />
+              <div className="mt-2">
+                <AppMarkdown body={scrapComment.body} />
+              </div>
             </div>
           ))}
         </div>
