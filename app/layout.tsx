@@ -26,10 +26,12 @@ export default async function RootLayout({
     <html lang="ja">
       <GA />
       <Adsense />
-      <body className="bg-gray-100">
+      <body className="bg-gray-100 flex flex-col min-h-screen">
         <Header authenticated={!!user} />
-        <div className="mt-4">{children}</div>
-        <Footer />
+        <div className="mt-4 flex-grow">{children}</div>
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </body>
     </html>
   );

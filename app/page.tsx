@@ -8,7 +8,7 @@ export default async function Home() {
     return redirect("/dashboard");
   }
   return (
-    <div className="relative isolate pt-14">
+    <div className="relative isolate pt-14 mb-16">
       <div
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         aria-hidden="true"

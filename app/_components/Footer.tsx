@@ -4,7 +4,7 @@ const navigation = {
   main: [
     { name: "ホーム", href: "/" },
     { name: "利用規約", href: "/terms" },
-    { name: "プライバシーポリシー", href: "/" },
+    { name: "プライバシーポリシー", href: "/privacy" },
   ],
 };
 
