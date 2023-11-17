@@ -96,6 +96,17 @@ export const fetchCurrentUser = async () => {
       systemInitialUserScreenNaming: true,
     },
   });
+  if (!user) {
+    return null;
+  }
 
-  return user;
+  const screenName = user.systemInitialUserScreenNaming?.screenName;
+  if (!screenName) {
+    throw new Error("screenName is not found.");
+  }
+
+  return {
+    id: user.id,
+    screenName,
+  };
 };

@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Header from "./_components/Header";
-import { auth } from "@/auth";
+import { auth, fetchCurrentUser } from "@/auth";
 import { SITE_TITLE } from "./constant";
 import { GA } from "./_components/GA";
 import { Adsense } from "./_components/Adsense";
@@ -19,15 +19,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-  const user = session?.user;
+  const currentUser = await fetchCurrentUser();
 
   return (
     <html lang="ja">
       <GA />
       <Adsense />
       <body className="bg-gray-100 flex flex-col min-h-screen">
-        <Header authenticated={!!user} />
+        <Header currentUser={currentUser} />
         <div className="mt-4 flex-grow">{children}</div>
         <div className="mt-auto">
           <Footer />

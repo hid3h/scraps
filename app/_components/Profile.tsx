@@ -8,7 +8,7 @@ export const Profile = ({ screenName }: { screenName: string }) => {
         <dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
           <div className="pt-6 flex">
             <dt className="font-medium text-gray-900 w-64 flex-none pr-6">
-              Screen name
+              Account
             </dt>
             <dd className="flex justify-between gap-x-6 mt-0 flex-auto">
               <div className="text-gray-900">{screenName}</div>

@@ -12,11 +12,13 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Header(props: { authenticated: boolean }) {
-  const { authenticated } = props;
+export default function Header(props: {
+  currentUser: { id: string; screenName: string } | null;
+}) {
   const [open, setOpen] = useState(false);
-
   const pathname = usePathname();
+
+  const { currentUser } = props;
   const isDispalyLoginButon = pathname !== "/";
 
   return (
@@ -28,7 +30,7 @@ export default function Header(props: { authenticated: boolean }) {
               <div className="relative flex h-16 justify-between">
                 <div className="flex flex-1 items-stretch justify-start">
                   <div className="flex flex-shrink-0 items-center">
-                    <Link href={authenticated ? "/dashboard" : "/"}>
+                    <Link href={currentUser ? "/dashboard" : "/"}>
                       {SITE_TITLE}
                     </Link>
                   </div>
@@ -37,7 +39,7 @@ export default function Header(props: { authenticated: boolean }) {
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <Menu as="div" className="relative ml-3">
                       <div>
-                        {authenticated ? (
+                        {currentUser ? (
                           <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
@@ -72,19 +74,14 @@ export default function Header(props: { authenticated: boolean }) {
                         leaveTo="transform opacity-0 scale-95"
                       >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <a
-                                href="/mypage"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                マイページ
-                              </a>
-                            )}
-                          </Menu.Item>
+                          <div className="px-4 py-3">
+                            <a
+                              href={`/u/${currentUser?.screenName}`}
+                              className="truncate text-sm font-medium text-gray-900"
+                            >
+                              @{currentUser?.screenName}
+                            </a>
+                          </div>
                           <Menu.Item>
                             {({ active }) => (
                               <a
