@@ -28,17 +28,31 @@ export const findScrap = async ({ id }: { id: string }) => {
             none: {},
           },
         },
+        include: {
+          scrapCommentEditings: {
+            orderBy: {
+              editedAt: "desc",
+            },
+            take: 1,
+          },
+        },
       },
     },
   });
 
   const postedAt = toZnedDateTime(scrapPosting.postedAt);
-  
+
   const scrapCommentings = scrapPosting.scrapCommentings.map(
     (scrapCommenting) => {
       const commentedAt = toZnedDateTime(scrapCommenting.commentedAt);
+
+      const body =
+        scrapCommenting.scrapCommentEditings.length > 0
+          ? scrapCommenting.scrapCommentEditings[0].body
+          : scrapCommenting.body;
       return {
-        ...scrapCommenting,
+        id: scrapCommenting.id,
+        body,
         commentedAtStr: `${commentedAt.toPlainDate()} ${commentedAt.hour}:${
           commentedAt.minute
         }`,

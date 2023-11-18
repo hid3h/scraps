@@ -123,6 +123,7 @@ export const ScrapCommentCard = ({
             action={async (formData) => {
               await formAction(formData);
               ref.current?.reset();
+              setIsEditMode(false);
             }}
           >
             <Tab.Group onChange={handleTabChange}>

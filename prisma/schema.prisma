@@ -104,6 +104,7 @@ model ScrapCommenting {
   scrapPosting ScrapPosting @relation(fields: [scrapPostingId], references: [id])
   scrapPostingId String @map("scrap_posting_id")
   scrapCommentDeletings ScrapCommentDeleting[]
+  scrapCommentEditings ScrapCommentEditing[]
 
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -120,6 +121,19 @@ model ScrapCommentDeleting {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("scrap_comment_deletings")
+}
+
+model ScrapCommentEditing {
+  id String @id @default(cuid())
+  body String
+  editedAt DateTime @map("edited_at")
+
+  scrapCommenting ScrapCommenting @relation(fields: [scrapCommentingId], references: [id])
+  scrapCommentingId String @map("scrap_commenting_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("scrap_comment_editings")
 }
 
 model SystemInitialUserScreenNaming {

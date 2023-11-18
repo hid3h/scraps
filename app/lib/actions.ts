@@ -93,7 +93,35 @@ export const editScrapComment = async (
   scrapCommentingId: string,
   formData: FormData
 ) => {
-  console.log("edi");
+  const currentUser = await findCurrentUser();
+  // 自分のコメント以外は編集できない
+  const scrapCommenting = await prisma.scrapCommenting.findUniqueOrThrow({
+    where: {
+      id: scrapCommentingId,
+    },
+  });
+
+  if (scrapCommenting.userId !== currentUser.id) {
+    throw new Error("自分のコメント以外は編集できません");
+  }
+
+  const { body } = ScrapCommentSchema.parse({
+    body: formData.get("body"),
+  });
+
+  await prisma.scrapCommentEditing.create({
+    data: {
+      body,
+      editedAt: new Date(),
+      scrapCommenting: {
+        connect: {
+          id: scrapCommentingId,
+        },
+      },
+    },
+  });
+
+  revalidatePath(`/`);
 };
 
 export async function deleteScrapComment(commentId: string) {
