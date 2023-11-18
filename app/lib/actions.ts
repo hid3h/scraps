@@ -89,6 +89,13 @@ export async function addScrapComment(scrap: ScrapPosting, formData: FormData) {
   revalidatePath(`/`);
 }
 
+export const editScrapComment = async (
+  scrapCommentingId: string,
+  formData: FormData
+) => {
+  console.log("edi");
+};
+
 export async function deleteScrapComment(commentId: string) {
   const currentUser = await findCurrentUser();
   // 自分のコメント以外は削除できない
