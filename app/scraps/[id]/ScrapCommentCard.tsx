@@ -1,6 +1,6 @@
 "use client";
 
-import { editScrapComment } from "@/app/lib/actions";
+import { deleteScrapComment, editScrapComment } from "@/app/lib/actions";
 import { Menu, Transition } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -30,7 +30,8 @@ export const ScrapCommentCard = ({
   const [isEditMode, setIsEditMode] = useState(false);
   const [commentPreview, setCommentPreview] = useState("");
 
-  const formAction = editScrapComment.bind(null, scrapCommentingId);
+  const editFormAction = editScrapComment.bind(null, scrapCommentingId);
+  const deleteFormAction = deleteScrapComment.bind(null, scrapCommentingId);
 
   const toEditMode = () => {
     setIsEditMode(true);
@@ -92,7 +93,7 @@ export const ScrapCommentCard = ({
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <form action={formAction}>
+                      <form action={deleteFormAction}>
                         <button
                           className={classNames(
                             active
@@ -121,7 +122,7 @@ export const ScrapCommentCard = ({
           <form
             ref={ref}
             action={async (formData) => {
-              await formAction(formData);
+              await editFormAction(formData);
               ref.current?.reset();
               setIsEditMode(false);
             }}
