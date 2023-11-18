@@ -1,9 +1,8 @@
 import { findScrap } from "@/app/lib/data";
 import { ScrapHeading } from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
-import CommentCardMenu from "./CommentCardMenu";
-import { AppMarkdown } from "@/app/_components/AppMarkdown";
 import { fetchCurrentUser } from "@/auth";
+import { ScrapCommentCard } from "./ScrapCommentCard";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
@@ -31,22 +30,13 @@ export default async function Scrap({ params }: { params: { id: string } }) {
         <ScrapHeading scrap={scrap} isDisplayScrapMenu={isDisplayScrapMenu} />
         <div role="list" className="space-y-3">
           {scrap.scrapCommentings.map((scrapComment) => (
-            <div
+            <ScrapCommentCard
               key={scrapComment.id}
-              className="bg-white py-4 shadow rounded-md px-6 break-words"
-            >
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-gray-500">
-                  {scrapComment.commentedAtStr}
-                </div>
-                {isDisplayCommentMenu && (
-                  <CommentCardMenu scrapCommentId={scrapComment.id} />
-                )}
-              </div>
-              <div className="mt-2">
-                <AppMarkdown body={scrapComment.body} />
-              </div>
-            </div>
+              scrapCommentingId={scrapComment.id}
+              isDisplayCommentMenu={isDisplayCommentMenu}
+              commentedAtStr={scrapComment.commentedAtStr}
+              commentBody={scrapComment.body}
+            />
           ))}
         </div>
         <AddScrapCommentForm scrap={scrap} enabled={enabledScrapCommentForm} />
