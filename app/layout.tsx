@@ -28,9 +28,7 @@ export default async function RootLayout({
       <body className="bg-gray-100 flex flex-col min-h-screen">
         <Header currentUser={currentUser} />
         <div className="mt-4 flex-grow">{children}</div>
-        <div className="mt-auto">
-          <Footer />
-        </div>
+        <Footer />
       </body>
     </html>
   );
