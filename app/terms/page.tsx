@@ -88,8 +88,12 @@ export default async function Terms() {
                 (3)
                 過去運営者との契約に違反した者またはその関係者であると運営者が判断した場合
               </li>
-              <li className="py-2">(4) 第9条に定める措置を受けたことがある場合</li>
-              <li className="py-2">(5) その他、登録を適当でないと運営者が判断した場合</li>
+              <li className="py-2">
+                (4) 第9条に定める措置を受けたことがある場合
+              </li>
+              <li className="py-2">
+                (5) その他、登録を適当でないと運営者が判断した場合
+              </li>
             </ol>
           </ol>
         </section>
@@ -102,13 +106,17 @@ export default async function Terms() {
         </section>
 
         <section className="mt-6">
-          <h2 className="text-lg mb-2">第5条（パスワード及びユーザーIDの管理）</h2>
+          <h2 className="text-lg mb-2">
+            第5条（パスワード及びユーザーIDの管理）
+          </h2>
           <ol>
             <li className="py-2">
-              1. 登録ユーザーは、自己の責任において、本サービスに関するパスワード及びユーザーIDを適切に管理及び保管するものとし、これを第三者に利用させ、または貸与、譲渡、名義変更、売買等をしてはならないものとします。
+              1.
+              登録ユーザーは、自己の責任において、本サービスに関するパスワード及びユーザーIDを適切に管理及び保管するものとし、これを第三者に利用させ、または貸与、譲渡、名義変更、売買等をしてはならないものとします。
             </li>
             <li className="py-2">
-              2. パスワードまたはユーザーIDの管理不十分、使用上の過誤、第三者の使用等によって生じた損害に関する責任は登録ユーザーが負うものとします。
+              2.
+              パスワードまたはユーザーIDの管理不十分、使用上の過誤、第三者の使用等によって生じた損害に関する責任は登録ユーザーが負うものとします。
             </li>
           </ol>
         </section>
@@ -119,7 +127,9 @@ export default async function Terms() {
             登録ユーザーは、本サービスの利用にあたり、以下の各号のいずれかに該当する行為または該当すると運営者が判断する行為をしてはなりません。
           </p>
           <ol>
-            <li className="py-2">(1) 法令に違反する行為または犯罪行為に関連する行為</li>
+            <li className="py-2">
+              (1) 法令に違反する行為または犯罪行為に関連する行為
+            </li>
             <li className="py-2">
               (2)
               運営者、本サービスの他の利用者またはその他の第三者に対する詐欺または脅迫行為
@@ -133,7 +143,9 @@ export default async function Terms() {
               (5)
               本サービスを通じ、以下に該当し、または該当すると運営者が判断する情報を運営者または本サービスの他の利用者に送信すること
               <ul>
-                <li className="py-2">・過度に暴力的または残虐な表現を含む情報</li>
+                <li className="py-2">
+                  ・過度に暴力的または残虐な表現を含む情報
+                </li>
                 <li className="py-2">
                   ・コンピューター・ウィルスその他の有害なコンピューター・プログラムを含む情報
                 </li>
@@ -144,10 +156,16 @@ export default async function Terms() {
                   ・過度にわいせつな表現を含む情報
                   ・差別を助長する表現を含む情報
                 </li>
-                <li className="py-2">・自殺、自傷行為を助長する表現を含む情報</li>
-                <li className="py-2">・薬物の不適切な利用を助長する表現を含む情報</li>
+                <li className="py-2">
+                  ・自殺、自傷行為を助長する表現を含む情報
+                </li>
+                <li className="py-2">
+                  ・薬物の不適切な利用を助長する表現を含む情報
+                </li>
                 <li className="py-2">・反社会的な表現を含む情報</li>
-                <li className="py-2">・チェーンメール等の第三者への情報の拡散を求める情報</li>
+                <li className="py-2">
+                  ・チェーンメール等の第三者への情報の拡散を求める情報
+                </li>
                 <li className="py-2">・他人に不快感を与える表現を含む情報</li>
               </ul>
             </li>
@@ -159,8 +177,12 @@ export default async function Terms() {
               (7)
               運営者が提供するソフトウェアその他のシステムに対するリバースエンジニアリングその他の解析行為
             </li>
-            <li className="py-2">(8) 本サービスの運営を妨害するおそれのある行為</li>
-            <li className="py-2">(9) 運営者のネットワークまたはシステム等への不正アクセス</li>
+            <li className="py-2">
+              (8) 本サービスの運営を妨害するおそれのある行為
+            </li>
+            <li className="py-2">
+              (9) 運営者のネットワークまたはシステム等への不正アクセス
+            </li>
             <li className="py-2">(10) 第三者に成りすます行為</li>
             <li className="py-2">
               (11) 本サービスの他の利用者のIDまたはパスワードを利用する行為
@@ -175,7 +197,9 @@ export default async function Terms() {
               運営者、本サービスの他の利用者またはその他の第三者に不利益、損害、不快感を与える行為
             </li>
             <li className="py-2">(15) 反社会的勢力等への利益供与</li>
-            <li className="py-2">(16) 面識のない異性との出会いを目的とした行為</li>
+            <li className="py-2">
+              (16) 面識のない異性との出会いを目的とした行為
+            </li>
             <li className="py-2">
               (17) 前各号の行為を直接または間接に惹起し、または容易にする行為
             </li>
@@ -196,7 +220,9 @@ export default async function Terms() {
             <li className="py-2">
               地震、落雷、火災、風水害、停電、天災地変などの不可抗力により本サービスの運営ができなくなった場合
             </li>
-            <li className="py-2">その他、運営者が停止または中断を必要と判断した場合</li>
+            <li className="py-2">
+              その他、運営者が停止または中断を必要と判断した場合
+            </li>
           </ol>
         </section>
 
@@ -229,8 +255,12 @@ export default async function Terms() {
               1.
               運営者は、登録ユーザーが、以下の各号のいずれかの事由に該当する場合は、事前に通知または催告することなく、投稿データを削除もしくは非表示にし、当該登録ユーザーについて本サービスの利用を一時的に停止し、または登録ユーザーとしての登録を抹消することができます。
               <ol>
-                <li className="py-2">(1)本規約のいずれかの条項に違反した場合</li>
-                <li className="py-2">(2)登録事項に虚偽の事実があることが判明した場合</li>
+                <li className="py-2">
+                  (1)本規約のいずれかの条項に違反した場合
+                </li>
+                <li className="py-2">
+                  (2)登録事項に虚偽の事実があることが判明した場合
+                </li>
                 <li className="py-2">
                   (3)運営者からの問い合わせその他の回答を求める連絡に対して30日間以上応答がない場合
                 </li>
@@ -264,7 +294,9 @@ export default async function Terms() {
         </section>
 
         <section className="mt-6">
-          <h2 className="text-lg mb-2">第11条（本サービスの内容の変更、終了）</h2>
+          <h2 className="text-lg mb-2">
+            第11条（本サービスの内容の変更、終了）
+          </h2>
           <ol>
             <li className="py-2">
               1.
@@ -340,7 +372,9 @@ export default async function Terms() {
         </section>
 
         <section className="mt-6">
-          <h2 className="text-lg mb-2">第17条（サービス利用契約上の地位の譲渡等）</h2>
+          <h2 className="text-lg mb-2">
+            第17条（サービス利用契約上の地位の譲渡等）
+          </h2>
           <ol>
             <li className="py-2">
               1.
@@ -363,7 +397,9 @@ export default async function Terms() {
         <section className="mt-6">
           <h2 className="text-lg mb-2">第19条（準拠法及び管轄裁判所）</h2>
           <ol>
-            <li className="py-2">1. 本規約及びサービス利用契約の準拠法は日本法とします。</li>
+            <li className="py-2">
+              1. 本規約及びサービス利用契約の準拠法は日本法とします。
+            </li>
             <li className="py-2">
               2.
               本規約またはサービス利用契約に起因し、または関連する一切の紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
@@ -372,7 +408,7 @@ export default async function Terms() {
         </section>
 
         <section className="mt-6">
-          <p>2023年11月14日制定</p>
+          <p>2023年11月26日制定</p>
         </section>
       </div>
     </div>
