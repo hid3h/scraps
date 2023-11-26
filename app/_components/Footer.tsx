@@ -11,7 +11,7 @@ const navigation = {
 export const Footer = () => {
   return (
     <div className="bg-white relative mt-6">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 pt-10 pb-20">
         <nav
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
           aria-label="Footer"
