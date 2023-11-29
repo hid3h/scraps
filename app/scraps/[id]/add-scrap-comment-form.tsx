@@ -25,6 +25,7 @@ export const AddScrapCommentForm = ({
   // これでいいのか？
   const ref = useRef<HTMLFormElement>(null);
   const [commentPreview, setCommentPreview] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const hiddenFileInput = useRef<HTMLInputElement>(null);
 
@@ -33,6 +34,7 @@ export const AddScrapCommentForm = ({
   const formAction = addScrapComment.bind(null, scrap);
 
   const handleTabChange = (index: number) => {
+    setSelectedIndex(index);
     if (index == 0) return;
     setCommentPreview(ref.current?.body.value);
   };
@@ -85,9 +87,11 @@ export const AddScrapCommentForm = ({
         action={async (formData) => {
           await formAction(formData);
           ref.current?.reset();
+          // Tabを切り替える
+          setSelectedIndex(0);
         }}
       >
-        <Tab.Group onChange={handleTabChange}>
+        <Tab.Group onChange={handleTabChange} selectedIndex={selectedIndex}>
           {({ selectedIndex }) => (
             <>
               <Tab.List className="flex items-center">
