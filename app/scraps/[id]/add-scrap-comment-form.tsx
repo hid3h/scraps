@@ -6,6 +6,9 @@ import { useRef, useState } from "react";
 import { Tab } from "@headlessui/react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { AppMarkdown } from "@/app/_components/AppMarkdown";
+//@ts-expect-error
+// https://github.com/vercel/next.js/issues/56041
+import { useFormStatus } from "react-dom";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -166,14 +169,24 @@ export const AddScrapCommentForm = ({
           )}
         </Tab.Group>
         <div className="mt-2 flex justify-end">
-          <button
-            type="submit"
-            className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Post
-          </button>
+          <SubmitButton />
         </div>
       </form>
     </div>
+  );
+};
+
+// コンポーネントとして切り出さないとuseFormStatusが動かない...?
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      disabled={pending}
+      type="submit"
+      className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      コメントを追加
+    </button>
   );
 };
