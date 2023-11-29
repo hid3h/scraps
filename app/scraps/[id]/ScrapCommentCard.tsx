@@ -10,6 +10,9 @@ import {
 import { Fragment, useRef, useState } from "react";
 import { AppMarkdown } from "@/app/_components/AppMarkdown";
 import { Tab } from "@headlessui/react";
+//@ts-expect-error
+// https://github.com/vercel/next.js/issues/56041
+import { useFormStatus } from "react-dom";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -198,12 +201,7 @@ export const ScrapCommentCard = ({
               >
                 キャンセル
               </button>
-              <button
-                type="submit"
-                className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                更新する
-              </button>
+              <SubmitButton />
             </div>
           </form>
         ) : (
@@ -211,5 +209,19 @@ export const ScrapCommentCard = ({
         )}
       </div>
     </div>
+  );
+};
+
+// コンポーネントとして切り出さないとuseFormStatusが動かない...?
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      更新する
+    </button>
   );
 };
