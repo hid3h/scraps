@@ -12,6 +12,9 @@ export const SITE_DESCRIPTION = `日々のメモ、情報整理、日記。個�
 export const metadata: Metadata = {
   title,
   description: SITE_DESCRIPTION,
+  twitter: {
+    card: "summary",
+  },
 };
 
 export default async function RootLayout({
