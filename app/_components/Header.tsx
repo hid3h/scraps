@@ -30,9 +30,11 @@ export default function Header(props: {
               <div className="relative flex h-16 justify-between">
                 <div className="flex flex-1 items-stretch justify-start">
                   <div className="flex flex-shrink-0 items-center">
-                    <Link href={currentUser ? "/dashboard" : "/"}>
-                      {SITE_TITLE}
-                    </Link>
+                    <h1 className="text-lg font-semibold text-gray-900">
+                      <Link href={currentUser ? "/dashboard" : "/"}>
+                        {SITE_TITLE}
+                      </Link>
+                    </h1>
                   </div>
                 </div>
                 {isDispalyLoginButon && (
