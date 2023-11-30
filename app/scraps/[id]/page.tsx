@@ -3,13 +3,19 @@ import { ScrapHeading } from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
 import { fetchCurrentUser } from "@/auth";
 import { ScrapCommentCard } from "./ScrapCommentCard";
+import { SITE_TITLE } from "@/app/constant";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const scrap = await findScrap({
     id: params.id,
   });
+  // TODO: descriptionとして内容をサマリ
   return {
     title: scrap.title,
+    openGraph: {
+      title: `${scrap.title} | ${SITE_TITLE}`,
+      description: null,
+    },
   };
 }
 
