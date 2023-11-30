@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description: SITE_DESCRIPTION,
+    siteName: SITE_TITLE,
   },
   twitter: {
     card: "summary",
