@@ -33,6 +33,16 @@ export default async function Home() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <SigninForm />
             </div>
+            <div className="mt-4 text-sm text-gray-600">
+              <a href="/terms" className="text-indigo-600 hover:text-indigo-500">
+                利用規約
+              </a>
+              および
+              <a href="/privacy" className="text-indigo-600 hover:text-indigo-500">
+                プライバシーポリシー
+              </a>
+              に同意したうえでログインしてください。
+            </div>
           </div>
         </div>
       </div>
