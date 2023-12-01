@@ -181,7 +181,7 @@ export default function Privacy() {
         </section>
 
         <section className="mt-6">
-          <p className="mt-2">2023年11月26日制定</p>
+          <p className="mt-2">2023年12月01日制定</p>
         </section>
       </div>
     </div>
