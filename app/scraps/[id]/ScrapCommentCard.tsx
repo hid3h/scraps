@@ -8,8 +8,6 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment, useRef, useState } from "react";
-import { AppMarkdown } from "@/app/_components/AppMarkdown";
-import { Tab } from "@headlessui/react";
 //@ts-expect-error
 // https://github.com/vercel/next.js/issues/56041
 import { useFormStatus } from "react-dom";
@@ -31,18 +29,12 @@ export const ScrapCommentCard = ({
 }) => {
   const ref = useRef<HTMLFormElement>(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [commentPreview, setCommentPreview] = useState("");
 
   const editFormAction = editScrapComment.bind(null, scrapCommentingId);
   const deleteFormAction = deleteScrapComment.bind(null, scrapCommentingId);
 
   const toEditMode = () => {
     setIsEditMode(true);
-  };
-
-  const handleTabChange = (index: number) => {
-    if (index == 0) return;
-    setCommentPreview(ref.current?.body.value);
   };
 
   const cancelEdit = () => {
@@ -130,69 +122,20 @@ export const ScrapCommentCard = ({
               setIsEditMode(false);
             }}
           >
-            <Tab.Group onChange={handleTabChange}>
-              {({ selectedIndex }) => (
-                <>
-                  <Tab.List className="flex items-center">
-                    <Tab
-                      className={({ selected }) =>
-                        classNames(
-                          selected
-                            ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                            : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
-                          "rounded-md border border-transparent px-3 py-1.5 text-sm font-medium"
-                        )
-                      }
-                    >
-                      Write
-                    </Tab>
-                    <Tab
-                      className={({ selected }) =>
-                        classNames(
-                          selected
-                            ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                            : "bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900",
-                          "ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium"
-                        )
-                      }
-                    >
-                      Preview
-                    </Tab>
-                  </Tab.List>
-                  <Tab.Panels className="mt-2">
-                    <Tab.Panel
-                      className="-m-0.5 rounded-lg p-0.5"
-                      unmount={false}
-                    >
-                      <label htmlFor="comment" className="sr-only">
-                        Comment
-                      </label>
-                      <div>
-                        <textarea
-                          rows={5}
-                          name="body"
-                          id="comment"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-                          placeholder="Add your comment..."
-                          defaultValue={commentBody}
-                          required
-                        />
-                      </div>
-                    </Tab.Panel>
-                    <Tab.Panel
-                      className="-m-0.5 rounded-lg p-0.5"
-                      unmount={false}
-                    >
-                      <div className="border-b">
-                        <div className="mx-px mt-px px-3 pb-12 pt-2 text-gray-800">
-                          <AppMarkdown body={commentPreview} />
-                        </div>
-                      </div>
-                    </Tab.Panel>
-                  </Tab.Panels>
-                </>
-              )}
-            </Tab.Group>
+            <label htmlFor="comment" className="sr-only">
+              Comment
+            </label>
+            <div>
+              <textarea
+                rows={5}
+                name="body"
+                id="comment"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                placeholder="Add your comment..."
+                defaultValue={commentBody}
+                required
+              />
+            </div>
             <div className="mt-2 flex justify-end space-x-2">
               <button
                 onClick={cancelEdit}
@@ -205,7 +148,7 @@ export const ScrapCommentCard = ({
             </div>
           </form>
         ) : (
-          <AppMarkdown body={commentBody} />
+          <div>{commentBody}</div>
         )}
       </div>
     </div>
