@@ -148,7 +148,7 @@ export const ScrapCommentCard = ({
             </div>
           </form>
         ) : (
-          <div className="whitespace-pre-wrap">{commentBody}</div>
+          <div className="whitespace-pre-wrap"><Linkify text={commentBody} /></div>
         )}
       </div>
     </div>
@@ -167,4 +167,21 @@ const SubmitButton = () => {
       更新する
     </button>
   );
+};
+interface LinkifyProps {
+  text: string;
+}
+
+const Linkify: React.FC<LinkifyProps> = ({ text }) => {
+  const urlRegex = /(\bhttps?:\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gi;
+
+  const linkifiedText = text.split(urlRegex).map((part, index) =>
+    urlRegex.test(part) ? (
+      <a href={part} target="_blank" rel="noopener noreferrer" key={index} className="text-indigo-600 hover:text-indigo-500">{part}</a>
+    ) : (
+      part
+    )
+  );
+
+  return <>{linkifiedText}</>;
 };
