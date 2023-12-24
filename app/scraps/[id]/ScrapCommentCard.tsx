@@ -148,7 +148,7 @@ export const ScrapCommentCard = ({
             </div>
           </form>
         ) : (
-          <div>{commentBody}</div>
+          <div className="whitespace-pre-wrap">{commentBody}</div>
         )}
       </div>
     </div>
