@@ -3,7 +3,7 @@ import { ScrapHeading } from "./ScrapHeading";
 import { AddScrapCommentForm } from "./add-scrap-comment-form";
 import { fetchCurrentUser } from "@/auth";
 import { ScrapCommentCard } from "./ScrapCommentCard";
-import { SITE_TITLE } from "@/app/constant";
+import { SITE_TITLE } from "@/app/(scrap)/constant";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const scrap = await findScrap({

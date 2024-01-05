@@ -3,7 +3,7 @@
 //@ts-expect-error
 // https://github.com/vercel/next.js/issues/56041
 import { useFormStatus } from "react-dom";
-import { postScrap } from "../lib/actions";
+import { postScrap } from "../../lib/actions";
 
 // コンポーネントとして切り出さないとuseFormStatusが動かない...?
 const SubmitButton = () => {
