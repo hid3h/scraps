@@ -2,8 +2,8 @@
 import { Disclosure, Menu, Transition, Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { SITE_TITLE } from "../constant";
-import { Fragment, use, useState } from "react";
+import { SITE_TITLE } from "../(scrap)/constant";
+import { Fragment, useState } from "react";
 import { logout } from "../lib/actions";
 import { SigninForm } from "./SigninForm";
 import { usePathname } from "next/navigation";

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { SigninForm } from "./_components/SigninForm";
+import { SigninForm } from "../_components/SigninForm";
 
 export default async function Home() {
   const session = await auth();
@@ -34,11 +34,17 @@ export default async function Home() {
               <SigninForm />
             </div>
             <div className="mt-4 text-sm text-gray-600">
-              <a href="/terms" className="text-indigo-600 hover:text-indigo-500">
+              <a
+                href="/terms"
+                className="text-indigo-600 hover:text-indigo-500"
+              >
                 利用規約
               </a>
               および
-              <a href="/privacy" className="text-indigo-600 hover:text-indigo-500">
+              <a
+                href="/privacy"
+                className="text-indigo-600 hover:text-indigo-500"
+              >
                 プライバシーポリシー
               </a>
               に同意したうえでログインしてください。

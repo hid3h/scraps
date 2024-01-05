@@ -1,6 +1,6 @@
-import { fetchScrapSummary } from "../lib/data";
+import { fetchScrapSummary } from "../../lib/data";
 import CreateScrapForm from "./create-scrap-form";
-import { ScrapSummary } from "../_components/ScrapSummary";
+import { ScrapSummary } from "../../_components/ScrapSummary";
 
 export default async function Dashboard() {
   const scrapSummary = await fetchScrapSummary();
